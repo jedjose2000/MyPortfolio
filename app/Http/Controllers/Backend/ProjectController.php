@@ -35,6 +35,7 @@ class ProjectController extends Controller
                 'name' => $request->name,
                 'projectUrl' => $request->projectUrl,
                 'image' => $image,
+                'projectDescription' => $request->projectDescription
             ]);
 
             return to_route('projects.index')->with('success','Project Created!');
@@ -62,6 +63,7 @@ class ProjectController extends Controller
             'skill_id' => $request->skills,
             'projectUrl' => $request->projectUrl,
             'image' => $image,
+            'projectDescription' => $request->projectDescription
         ]);
 
         return to_route('projects.index')->with('success','Project Updated');

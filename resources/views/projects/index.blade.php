@@ -24,6 +24,9 @@
                             Image
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Project Description
+                        </th>
+                        <th scope="col" class="px-6 py-3">
 
                         </th>
                     </tr>
@@ -39,6 +42,11 @@
                             </td>
                             <td class="px-6 py-4">
                                 <img src="{{asset('/storage/' . $project->image)}}" class="w-12 h-12" alt="">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="whitespace-nowrap overflow-hidden overflow-ellipsis w-40" title="{{$project->projectDescription}}">
+                                    {{$project->projectDescription}}
+                                </div>
                             </td>
                             <td class="flex justify-end py-4 px-6">
                                 <a href="{{route('projects.edit',$project->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-3">Edit</a>
