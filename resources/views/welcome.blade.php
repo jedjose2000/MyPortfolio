@@ -9,8 +9,8 @@
     <x-frontend.skills :skills="$skills"></x-frontend.skills>
     {{--PORTFOLIO--}}
     <x-frontend.portfolio :skills="$skills" :projects="$projects"></x-frontend.portfolio>
-    {{--SERVICES--}}
     {{--CONTACT--}}
+    <x-frontend.contact></x-frontend.contact>
 </x-front-end-layout>
 
 <!-- from cdn -->
