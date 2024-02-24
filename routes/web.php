@@ -36,4 +36,12 @@ Route::middleware('auth')->group(function (){
     Route::resource('/projects',ProjectController::class);
 });
 
+Route::get('/run-migrations', function (){
+    Artisan::call('optimize:clear');
+    Artisan::call('migrate:fresh');
+
+    return 'migrated successfully';
+});
+
+
 require __DIR__.'/auth.php';
