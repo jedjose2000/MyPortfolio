@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\ProjectSkills;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -16,7 +17,6 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-
         return view('projects.index',compact('projects'));
     }
 
@@ -28,15 +28,23 @@ class ProjectController extends Controller
 
     public function store(StoreProjectRequest $request)
     {
+
         if ($request->hasFile('image')){
             $image = $request->file('image')->store('projects');
-            Project::create([
-                'skill_id' => $request->skills,
+            $newProjectId = Project::create([
                 'name' => $request->name,
                 'projectUrl' => $request->projectUrl,
                 'image' => $image,
                 'projectDescription' => $request->projectDescription
             ]);
+
+            foreach ($request->skills as $skill){
+                ProjectSkills::create([
+                    'skill_id' => $skill,
+                    'project_id'=> $newProjectId->id,
+                ]);
+            }
+
 
             return to_route('projects.index')->with('success','Project Created!');
         }
@@ -47,7 +55,12 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $skills = Skill::all();
-        return view('projects.edit', compact('project','skills'));
+        $projectSkills = $project->projectSkills;
+        $data = [];
+        foreach ($projectSkills as $projectSkill) {
+            $data[]  = $projectSkill->skill_id;
+        }
+        return view('projects.edit', compact('project','skills' , 'projectSkills', 'data'));
     }
 
     public function update(UpdateProjectRequest $request, Project $project)
@@ -65,6 +78,15 @@ class ProjectController extends Controller
             'image' => $image,
             'projectDescription' => $request->projectDescription
         ]);
+
+        $project->projectSkills()->delete();
+
+        foreach ($request->skills as $skill){
+            ProjectSkills::create([
+                'skill_id' => $skill,
+                'project_id'=> $project->id,
+            ]);
+        }
 
         return to_route('projects.index')->with('success','Project Updated');
     }

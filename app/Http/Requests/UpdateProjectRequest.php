@@ -24,7 +24,7 @@ class UpdateProjectRequest extends FormRequest
         return [
             'name' => ['required','min:3'],
             'projectUrl' => ['nullable','url'],
-            'skills' => ['required'],
+            'skills' => ['required', 'array'],
             'image' => ['image']
         ];
     }

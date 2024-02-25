@@ -38,7 +38,9 @@
                                 {{$project->name}}
                             </th>
                             <td class="px-6 py-4">
-                                {{$project->skill->name}}
+                                @foreach($project->projectSkills as $key => $projectSkill)
+                                    {{$projectSkill->skills->name}}{{ $key < $project->projectSkills->count() - 1 ? ',' : '' }}
+                                @endforeach
                             </td>
                             <td class="px-6 py-4">
                                 <img src="{{asset('/storage/' . $project->image)}}" class="w-12 h-12" alt="">

@@ -9,11 +9,12 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['skill_id','name','image','projectUrl','projectDescription'];
+    protected $fillable = ['name','image','projectUrl','projectDescription'];
 
 
-    public function skill()
+    public function projectSkills(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsTo(Skill::class);
+        return $this->hasMany(ProjectSkills::class, 'project_id');
     }
+
 }

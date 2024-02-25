@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/skills', [WelcomeController::class, 'skills']);
 Route::get('/projects', [WelcomeController::class, 'projects']);
 Route::post('/contact', [ContactController::class,'contact']);
+Route::get('/allProjects', [WelcomeController::class, 'allProjectsWithSkills']);
