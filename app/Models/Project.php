@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','image','projectUrl','projectDescription'];
+    protected $fillable = ['name','image','projectUrl','projectDescription','gitHubUrl'];
 
 
     public function projectSkills(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -24,6 +24,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'name' => ['required','min:3'],
             'projectUrl' => ['nullable','url'],
+            'gitHubUrl' => ['required','url'],
             'skills' => ['required','array'],
             'image' => ['required','image']
         ];
@@ -34,6 +35,8 @@ class StoreProjectRequest extends FormRequest
         return [
             'skills.array' => 'Please select a skill',
             'projectUrl.url' => 'Please input a valid url',
+            'gitHubUrl.url' => 'Please input a valid url',
+            'gitHubUrl.required' => 'GitHub Url is required',
             'name.min' => 'Name must consist a minimum of 3 characters',
             'image.image' => 'Uploaded file must be an image type',
             'image.required' => 'Please upload an image',

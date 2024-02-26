@@ -28,12 +28,12 @@ class ProjectController extends Controller
 
     public function store(StoreProjectRequest $request)
     {
-
         if ($request->hasFile('image')){
             $image = $request->file('image')->store('projects');
             $newProjectId = Project::create([
                 'name' => $request->name,
                 'projectUrl' => $request->projectUrl,
+                'gitHubUrl' => $request->gitHubUrl,
                 'image' => $image,
                 'projectDescription' => $request->projectDescription
             ]);
@@ -75,6 +75,7 @@ class ProjectController extends Controller
             'name' => $request->name,
             'skill_id' => $request->skills,
             'projectUrl' => $request->projectUrl,
+            'gitHubUrl' => $request->gitHubUrl,
             'image' => $image,
             'projectDescription' => $request->projectDescription
         ]);

@@ -17,8 +17,14 @@
                 </div>
 
                 <div class="mb-2">
+                    <x-input-label for="gitHubUrl" :value="__('GitHub Url')" />
+                    <x-text-input id="gitHubUrl" class="block mt-1 w-full" type="text" name="gitHubUrl" :value="old('gitHubUrl', $project->gitHubUrl)" required autofocus />
+                    <x-input-error :messages="$errors->get('gitHubUrl')" class="mt-2" />
+                </div>
+
+                <div class="mb-2">
                     <x-input-label for="projectUrl" :value="__('Project Url')" />
-                    <x-text-input id="projectUrl" class="block mt-1 w-full" type="text" name="projectUrl" :value="old('projectUrl', $project->projectUrl)" required autofocus />
+                    <x-text-input id="projectUrl" class="block mt-1 w-full" type="text" name="projectUrl" :value="old('projectUrl', $project->projectUrl)" autofocus />
                     <x-input-error :messages="$errors->get('projectUrl')" class="mt-2" />
                 </div>
 
