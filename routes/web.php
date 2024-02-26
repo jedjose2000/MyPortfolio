@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', WelcomeController::class)->name('welcome');
-Route::post('/contact',ContactController::class);
 
 
 Route::middleware('auth')->group(function () {
@@ -36,6 +35,7 @@ Route::middleware('auth')->group(function (){
     Route::resource('/projects',ProjectController::class);
 });
 
+//for running migrations when hosted
 Route::get('/run-migrations', function (){
     Artisan::call('optimize:clear');
     Artisan::call('migrate:fresh');

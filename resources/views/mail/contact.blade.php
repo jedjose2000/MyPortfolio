@@ -3,5 +3,5 @@
 {{$body}}
 
 Thanks,<br>
-{{ $name }}
+From: {{ $name }}
 </x-mail::message>
