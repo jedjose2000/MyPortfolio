@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-
+import basicSsl from '@vitejs/plugin-basic-ssl'
 export default defineConfig({
     plugins: [
         laravel({
@@ -10,5 +10,6 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        basicSsl()
     ],
 });
