@@ -24,8 +24,14 @@ class WelcomeController extends Controller
 
     public function allProjectsWithSkills()
     {
-        $projects = Project::with('projectSkills')->get();
+        $projects = Project::with('projectSkills')->get()->sortByDesc('created_at');
         return ProjectResource::collection($projects);
+    }
+
+    public function getLatestProjectDescription()
+    {
+        $projects = Project::with('projectSkills')->get()->sortByDesc('created_at')->first();
+        return new ProjectResource($projects);
     }
 
 }

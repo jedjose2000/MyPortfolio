@@ -24,3 +24,5 @@ Route::get('/skills', [WelcomeController::class, 'skills']);
 Route::get('/projects', [WelcomeController::class, 'projects']);
 Route::post('/contact', [ContactController::class,'contact']);
 Route::get('/allProjects', [WelcomeController::class, 'allProjectsWithSkills']);
+Route::get('/getLatest', [WelcomeController::class, 'getLatestProjectDescription']);
+
